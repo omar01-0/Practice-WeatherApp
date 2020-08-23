@@ -2,6 +2,10 @@
 
 A new Flutter application.
 
+
+It is not yet completed.
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
