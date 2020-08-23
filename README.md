@@ -2,8 +2,9 @@
 
 A new Flutter application.
 
+Add your APIkey in utilities/constants.dart.
 
-It is not yet completed.
+It is yet to be completed.
 
 
 ## Getting Started
