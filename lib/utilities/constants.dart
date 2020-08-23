@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const String kAPIKey = 'da6ba08ac3826dd213e07dd295eb8b21';
+const String kAPIKey = '';
 const String kURLCurrent = 'https://api.openweathermap.org/data/2.5/weather';
 const String kURLWeekly = 'https://api.openweathermap.org/data/2.5/onecall';
 
