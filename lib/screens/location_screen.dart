@@ -7,6 +7,7 @@ import 'package:weaknow/utilities/next_day_weather_card.dart';
 import 'package:weaknow/services/weather.dart';
 import 'package:weaknow/services/parse_json_data.dart';
 import 'package:weaknow/services/parse_weekly_json_data.dart';
+import 'package:weaknow/utilities/custom_search_dialog.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.weatherCurrentData, this.weatherWeeklyData});
@@ -36,10 +37,15 @@ class _LocationScreenState extends State<LocationScreen> {
     });
   }
 
+  Future<dynamic> _showSearchDialogScreen(BuildContext context) {
+    return showDialog(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
+      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +73,13 @@ class _LocationScreenState extends State<LocationScreen> {
                           child: kUpdateLocation,
                         ),
                         FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CustomSearchDialog();
+                                });
+                          },
                           child: kSearchLocation,
                         ),
                       ],
@@ -180,8 +192,10 @@ class _LocationScreenState extends State<LocationScreen> {
                         itemBuilder: (context, int index) {
                           return NextDaysWeatherCard(
                             time: parseWeeklyData.daily[index].time,
-                            weatherIcon: weather.getWeatherIcon(parseWeeklyData.daily[index].weather[0].id),
-                            temperature: parseWeeklyData.daily[index].temp.day.toString(),
+                            weatherIcon: weather.getWeatherIcon(
+                                parseWeeklyData.daily[index].weather[0].id),
+                            temperature: parseWeeklyData.daily[index].temp.day
+                                .toString(),
                           );
                         },
                       ),
