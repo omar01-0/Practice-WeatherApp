@@ -2,6 +2,11 @@
 
 A new Flutter application.
 
+Add your APIkey in utilities/constants.dart.
+
+It is yet to be completed.
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
