@@ -10,7 +10,10 @@ import 'package:weaknow/services/parse_weekly_json_data.dart';
 import 'package:weaknow/utilities/custom_search_dialog.dart';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({this.weatherCurrentData, this.weatherWeeklyData});
+  LocationScreen({
+    this.weatherCurrentData,
+    this.weatherWeeklyData,
+  });
 
   final dynamic weatherCurrentData;
   final dynamic weatherWeeklyData;
@@ -23,6 +26,8 @@ class _LocationScreenState extends State<LocationScreen> {
   WeatherModal weather = WeatherModal();
   ParseJsonData parseJsonData;
   ParseWeeklyData parseWeeklyData;
+  dynamic weatherCurrentDataByCity;
+  dynamic weatherWeeklyDataByCity;
 
   @override
   void initState() {
@@ -32,13 +37,13 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateInfo(dynamic weatherCurrentData, dynamic weatherWeeklyData) {
     setState(() {
-      parseJsonData = ParseJsonData.fromJson(weatherCurrentData);
-      parseWeeklyData = ParseWeeklyData.fromJson(weatherWeeklyData);
+      weatherCurrentData != null
+          ? parseJsonData = ParseJsonData.fromJson(weatherCurrentData)
+          : parseJsonData = null;
+      weatherWeeklyData != null
+          ? parseWeeklyData = ParseWeeklyData.fromJson(weatherWeeklyData)
+          : parseWeeklyData = null;
     });
-  }
-
-  Future<dynamic> _showSearchDialogScreen(BuildContext context) {
-    return showDialog(context: context);
   }
 
   @override
@@ -73,12 +78,17 @@ class _LocationScreenState extends State<LocationScreen> {
                           child: kUpdateLocation,
                         ),
                         FlatButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return CustomSearchDialog();
-                                });
+                          onPressed: () async {
+                            String city = await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return CustomSearchDialog();
+                              },
+                            );
+                            weatherCurrentDataByCity =
+                                await weather.getCurrentWeatherDataByCity(city);
+                            updateInfo(weatherCurrentDataByCity,
+                                widget.weatherWeeklyData);
                           },
                           child: kSearchLocation,
                         ),
