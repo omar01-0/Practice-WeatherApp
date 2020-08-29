@@ -32,14 +32,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   void getWeatherData() async {
     if (!(await Geolocator().isLocationServiceEnabled())) {
-      updateStatusState(GeolocationStatus.denied);
+      updateStatus(GeolocationStatus.denied);
       intent.launch();
       if (await Geolocator().isLocationServiceEnabled()) {
-        updateStatusState(GeolocationStatus.granted);
+        updateStatus(GeolocationStatus.granted);
       } else
         return;
     } else {
-      updateStatusState(GeolocationStatus.granted);
+      updateStatus(GeolocationStatus.granted);
       weatherCurrentData = await WeatherModal().getCurrentWeatherData();
       print(weatherCurrentData);
       weatherWeeklyData = await WeatherModal().getWeeklyWeatherData();
@@ -58,16 +58,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     }
   }
 
-
-
-  void updateStatusState(GeolocationStatus status) {
+  void updateStatus(GeolocationStatus statusArg){
     setState(() {
-      _location.updateStatus(status);
-      if (status == GeolocationStatus.granted) {
-        LocationButton().locationIcon = kLocationIconOn;
-      } else if (status == GeolocationStatus.denied) {
-        LocationButton().locationIcon = kLocationIconOff;
-      }
+      _location.status = statusArg;
     });
   }
 
@@ -132,10 +125,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                       onpressed: (){
                         getWeatherData();
                       },
-                      locationIcon:
-                          _location.status == GeolocationStatus.granted
-                              ? kLocationIconOn
-                              : kLocationIconOff,
+                      locationIcon: kNavigateNext,
                     ),
                   ],
                 ),
