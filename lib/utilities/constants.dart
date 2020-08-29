@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const String kAPIKey = '';
+const String kAPIKey = 'da6ba08ac3826dd213e07dd295eb8b21';
 const String kURLCurrent = 'https://api.openweathermap.org/data/2.5/weather';
 const String kURLWeekly = 'https://api.openweathermap.org/data/2.5/onecall';
 
@@ -12,8 +12,7 @@ const kButtonsColor = Color(0xFFA2ACFF);
 const kBorderColor = Color(0xFFADB1CC);
 const kFontColor = Color(0xFF333866);
 
-const kLocationIconOn = Icon(Icons.location_on, color: kPrimaryColor,size: 40,);
-const kLocationIconOff = Icon(Icons.location_off, color: kFontColor,size: 40,);
+const kNavigateNext = Icon(Icons.navigate_next, color: kPrimaryColor,size: 40,);
 const kUpdateLocation = FaIcon(FontAwesomeIcons.locationArrow, color: kFontColor,size: 30,);
 const kSearchLocation = FaIcon(Icons.location_searching, color: kFontColor,size: 40,);
 const kCloudIcon = FaIcon(FontAwesomeIcons.cloud, color: kPrimaryColor, size: 20,);
@@ -34,6 +33,22 @@ const kTodayHeading = TextStyle(
   fontFamily: 'Poppins',
   fontStyle: FontStyle.normal,
   fontSize: 20.0,
+);
+
+const kSearchButton = TextStyle(
+  color: kPrimaryColor,
+  fontWeight: FontWeight.w100,
+  fontFamily: 'Poppins',
+  fontStyle: FontStyle.normal,
+  fontSize: 20.0,
+);
+
+const kSearchTextField = TextStyle(
+  color: kPrimaryColor,
+  fontWeight: FontWeight.w100,
+  fontFamily: 'Poppins',
+  fontStyle: FontStyle.normal,
+  fontSize: 18.0,
 );
 
 const kWelcomeSubTextStyle = TextStyle(
